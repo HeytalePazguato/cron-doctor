@@ -36,6 +36,10 @@ jobs:
 
   deploy:
     needs: build
+    # Only deploy from main; develop pushes still run the build job to
+    # validate the Jekyll site, but the github-pages environment is
+    # protected to main only.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
