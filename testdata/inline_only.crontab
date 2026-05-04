@@ -1,0 +1,3 @@
+# Used to exercise the "drift smell" check (multiple identical hourly schedules).
+0 * * * * /usr/local/bin/a.sh > /dev/null 2>&1
+0 * * * * /usr/local/bin/b.sh > /dev/null 2>&1

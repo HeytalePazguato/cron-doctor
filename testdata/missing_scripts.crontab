@@ -1,0 +1,3 @@
+MAILTO=ops@example.com
+0 5 * * * /opt/this-does-not-exist/run.sh > /dev/null 2>&1
+* * * * * curl https://example.com/hook > /dev/null 2>&1

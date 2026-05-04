@@ -1,0 +1,77 @@
+name: release
+
+# Stable release flow. Triggered when commits land on main (typically from a
+# release/* PR that bumped the VERSION file). Reads VERSION as the source of
+# truth, tags v<VERSION>, and runs goreleaser to publish:
+#   * GitHub Release with binaries + checksums
+#   * Homebrew tap update (HeytalePazguato/homebrew-tap)
+#   * Scoop bucket update  (HeytalePazguato/scoop-bucket)
+#
+# Idempotent: if the tag already exists (i.e. main was pushed without a
+# VERSION bump), the workflow exits cleanly without retagging or republishing.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-main
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache: true
+
+      - name: Read VERSION
+        id: ver
+        run: |
+          set -euo pipefail
+          v=$(tr -d '[:space:]' < VERSION)
+          if [ -z "$v" ]; then
+            echo "VERSION file is empty" >&2
+            exit 1
+          fi
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          echo "tag=v$v"    >> "$GITHUB_OUTPUT"
+
+      - name: Idempotence guard
+        id: guard
+        run: |
+          set -euo pipefail
+          git fetch --tags --quiet
+          if git rev-parse "${{ steps.ver.outputs.tag }}" >/dev/null 2>&1; then
+            echo "Tag ${{ steps.ver.outputs.tag }} already exists; skipping release."
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Push tag
+        if: steps.guard.outputs.exists == 'false'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag "${{ steps.ver.outputs.tag }}"
+          git push origin "${{ steps.ver.outputs.tag }}"
+
+      - uses: goreleaser/goreleaser-action@v6
+        if: steps.guard.outputs.exists == 'false'
+        with:
+          version: "~> v2"
+          args: release --clean
+        env:
+          GITHUB_TOKEN:              ${{ secrets.GITHUB_TOKEN }}
+          HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
+          SCOOP_GITHUB_TOKEN:        ${{ secrets.SCOOP_GITHUB_TOKEN }}
