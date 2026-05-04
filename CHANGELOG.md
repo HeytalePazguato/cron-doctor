@@ -21,6 +21,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     ### Security    — vulnerability fixes
 -->
 
+### Added
+
+- Multi-arch (amd64 + arm64) Docker image published to
+  `ghcr.io/heytalepazguato/cron-doctor` on every release and prerelease.
+
 ## [0.0.1] - 2026-05-03
 
 Initial release.

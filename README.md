@@ -36,6 +36,13 @@ go install github.com/HeytalePazguato/cron-doctor/cmd/cron-doctor@latest
 curl -sSL https://raw.githubusercontent.com/HeytalePazguato/cron-doctor/main/install.sh | sh
 ```
 
+**Docker (GHCR, multi-arch):**
+
+```sh
+docker run --rm -v /etc/crontab:/etc/crontab:ro \
+  ghcr.io/heytalepazguato/cron-doctor /etc/crontab
+```
+
 **Manual:** download the archive for your OS/arch from
 [Releases](https://github.com/HeytalePazguato/cron-doctor/releases) — Linux,
 macOS, and Windows on `amd64` and `arm64`.
