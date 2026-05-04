@@ -130,9 +130,18 @@ func TestCheckWorldWritableAndNotExecutable(t *testing.T) {
 	if err := os.WriteFile(wwPath, []byte("#!/bin/sh\n"), 0o777); err != nil {
 		t.Fatalf("write ww.sh: %v", err)
 	}
+	// os.WriteFile honors umask (typically 0o022), which strips the world-write
+	// bit. Re-apply the mode explicitly so the world-writable check has
+	// something to find.
+	if err := os.Chmod(wwPath, 0o777); err != nil {
+		t.Fatalf("chmod ww.sh: %v", err)
+	}
 	nePath := filepath.Join(dir, "ne.sh")
 	if err := os.WriteFile(nePath, []byte("#!/bin/sh\n"), 0o644); err != nil {
 		t.Fatalf("write ne.sh: %v", err)
+	}
+	if err := os.Chmod(nePath, 0o644); err != nil {
+		t.Fatalf("chmod ne.sh: %v", err)
 	}
 
 	src := "0 5 * * * " + filepath.ToSlash(wwPath) + " > /dev/null 2>&1\n" +
