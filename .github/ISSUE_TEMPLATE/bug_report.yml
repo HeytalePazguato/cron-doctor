@@ -1,0 +1,74 @@
+name: Bug report
+description: Something cron-doctor does wrong (parses incorrectly, misses a finding, false positive, crash, etc.).
+title: "[bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug. A minimal reproducing
+        crontab snippet is the most useful thing you can include.
+
+  - type: input
+    id: version
+    attributes:
+      label: cron-doctor version
+      description: Output of `cron-doctor --version`.
+      placeholder: cron-doctor 0.0.1 (abc1234, 2026-05-03)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Linux
+        - macOS
+        - Windows
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: crontab
+    attributes:
+      label: Minimal crontab that reproduces the issue
+      description: Paste the smallest crontab that triggers the bug. Use a fenced code block.
+      render: shell
+      placeholder: |
+        0 4 * * 1-5 /usr/local/bin/example.sh
+    validations:
+      required: true
+
+  - type: textarea
+    id: command
+    attributes:
+      label: Command you ran
+      render: shell
+      placeholder: cron-doctor my-crontab
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+      description: Paste the actual output (or describe the crash).
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: Stack traces, screenshots, related issues — anything helpful.
+    validations:
+      required: false

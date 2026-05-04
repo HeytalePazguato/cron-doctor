@@ -1,0 +1,26 @@
+title: cron-doctor
+description: >-
+  Audit your crontab in seconds. Plain-English schedule explanations, ten lint
+  checks, calendar view, JSON output. Pure Go static binary, no daemon, no
+  network.
+theme: jekyll-theme-cayman
+url: https://heytalepazguato.github.io
+baseurl: /cron-doctor
+
+show_downloads: true
+github:
+  repository_url: https://github.com/HeytalePazguato/cron-doctor
+  zip_url: https://github.com/HeytalePazguato/cron-doctor/archive/refs/heads/main.zip
+  tar_url: https://github.com/HeytalePazguato/cron-doctor/archive/refs/heads/main.tar.gz
+
+plugins:
+  - jekyll-relative-links
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+relative_links:
+  enabled: true
+  collections: true
+
+include:
+  - CHANGELOG.md

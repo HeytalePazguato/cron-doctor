@@ -1,0 +1,8 @@
+SHELL=/bin/bash
+MAILTO=ops@example.com
+
+# Backup database every six hours.
+0 */6 * * * /usr/local/bin/backup.sh >> /var/log/backup.log 2>&1
+
+# Rotate logs weekly.
+@weekly /usr/local/bin/rotate-logs.sh > /dev/null 2>&1

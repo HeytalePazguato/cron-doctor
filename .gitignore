@@ -30,3 +30,10 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Local build artifacts
+/cron-doctor
+/dist/
+
+# Claude Code local settings
+.claude/
