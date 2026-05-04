@@ -18,6 +18,10 @@ on:
 
 permissions:
   contents: write
+  # actions: write is required so the dev-build job can list and delete old
+  # workflow artifacts via the GitHub API. Declaring any permissions block
+  # silently scopes every unlisted permission to `none`.
+  actions: write
 
 concurrency:
   group: prerelease-${{ github.ref }}
