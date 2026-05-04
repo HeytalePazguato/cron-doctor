@@ -1,0 +1,34 @@
+# Default behavior: normalize text files to LF in the repo, native on checkout.
+* text=auto eol=lf
+
+# Explicit text files — always LF, even on Windows checkouts. This avoids the
+# CRLF warnings on `git add` and keeps shell scripts and Go source identical
+# regardless of contributor platform.
+*.go        text eol=lf
+*.md        text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.json      text eol=lf
+*.sh        text eol=lf
+*.crontab   text eol=lf
+Dockerfile  text eol=lf
+LICENSE     text eol=lf
+VERSION     text eol=lf
+
+# Windows-only files always get CRLF.
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+*.ps1       text eol=crlf
+
+# Binary assets — never touched by line-ending conversion.
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.svg       binary
+*.pdf       binary
+
+# Hide generated / vendored content from default diffs.
+go.sum       linguist-generated=true
+testdata/*   linguist-vendored=true
