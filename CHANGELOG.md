@@ -21,12 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     ### Security    — vulnerability fixes
 -->
 
-### Added
-
-- Multi-arch (amd64 + arm64) Docker image published to
-  `ghcr.io/heytalepazguato/cron-doctor` on every release and prerelease.
-
-## [0.0.1] - 2026-05-03
+## [0.0.1] - 2026-05-04
 
 Initial release.
 
@@ -53,7 +48,8 @@ Initial release.
 - `--version` flag, with version/commit/date stamped at build time via
   `-ldflags`.
 - Distribution: GitHub Releases (Linux/macOS/Windows, amd64/arm64),
-  Homebrew tap, Scoop bucket, `go install`, POSIX `install.sh`.
+  Homebrew tap, Scoop bucket, multi-arch GHCR Docker image
+  (`ghcr.io/heytalepazguato/cron-doctor`), `go install`, POSIX `install.sh`.
 - CI matrix (Go 1.22 + 1.23 on Linux, macOS, Windows).
 - Branch-flow workflows: gate (`ci.yml`), `prerelease.yml` (dev artifacts +
   tagged release/* prereleases), `release.yml` (`main` → tag + GitHub
