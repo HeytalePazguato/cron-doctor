@@ -56,6 +56,10 @@ brews:
     repository:
       owner: HeytalePazguato
       name: homebrew-tap
+      # Explicit token override — without this goreleaser falls back to the
+      # workflow's GITHUB_TOKEN, which is scoped to the cron-doctor repo and
+      # gets a 403 when pushing to homebrew-tap.
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
     homepage: https://github.com/HeytalePazguato/cron-doctor
     description: "Audit your crontabs"
     license: MIT
@@ -72,6 +76,7 @@ scoops:
     repository:
       owner: HeytalePazguato
       name: scoop-bucket
+      token: "{{ .Env.SCOOP_GITHUB_TOKEN }}"
     homepage: https://github.com/HeytalePazguato/cron-doctor
     description: "Audit your crontabs"
     license: MIT
