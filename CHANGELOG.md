@@ -21,6 +21,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     ### Security    — vulnerability fixes
 -->
 
+### Changed
+
+- CI: bump `actions/checkout` 4 → 6 across all workflows (#6).
+- CI: bump `actions/deploy-pages` 4 → 5 (#2).
+- CI: bump `actions/upload-pages-artifact` 3 → 5 (#4).
+- CI: bump `docker/setup-buildx-action` 3 → 4 (#3).
+- CI: bump `docker/login-action` 3 → 4 (#5).
+
 ## [0.0.1] - 2026-05-04
 
 Initial release.
