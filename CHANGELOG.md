@@ -5,12 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Unreleased] — next: 0.0.3
 
 <!--
-  Add entries here while working on `develop` or `release/*`. On stable
-  release, rename this section to `[X.Y.Z] - YYYY-MM-DD` and start a new
-  empty `[Unreleased]` block.
+  Add entries here while working on `develop` or `release/*`. The heading
+  carries the next target version (`next: X.Y.Z`) so it's obvious what
+  these entries will ship as. On release, rename to `[X.Y.Z] - YYYY-MM-DD`
+  and start a new `[Unreleased] — next: X.Y.Z+1` block.
 
   Use these subsections, omitting any that don't apply:
     ### Added       — new features
@@ -20,6 +21,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     ### Fixed       — bug fixes
     ### Security    — vulnerability fixes
 -->
+
+## [0.0.2] - 2026-05-09
+
+### Changed
+
+- CI: bump `actions/checkout` 4 → 6 across all workflows (#6).
+- CI: bump `actions/deploy-pages` 4 → 5 (#2).
+- CI: bump `actions/upload-pages-artifact` 3 → 5 (#4).
+- CI: bump `docker/setup-buildx-action` 3 → 4 (#3).
+- CI: bump `docker/login-action` 3 → 4 (#5).
 
 ## [0.0.1] - 2026-05-04
 
@@ -55,5 +66,6 @@ Initial release.
   tagged release/* prereleases), `release.yml` (`main` → tag + GitHub
   Release + Homebrew + Scoop, with idempotence guard).
 
-[Unreleased]: https://github.com/HeytalePazguato/cron-doctor/compare/v0.0.1...HEAD
+[Unreleased]: https://github.com/HeytalePazguato/cron-doctor/compare/v0.0.2...HEAD
+[0.0.2]: https://github.com/HeytalePazguato/cron-doctor/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/HeytalePazguato/cron-doctor/releases/tag/v0.0.1
