@@ -22,6 +22,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     ### Security    — vulnerability fixes
 -->
 
+### Changed
+
+- CI: bump `actions/setup-go` 5 → 6 to drop the deprecated Node.js 20 runtime
+  ahead of the GitHub Actions September 2026 cutoff.
+- CI: bump `docker/setup-qemu-action` 3 → 4 (Node.js 24 compatibility).
+- CI: bump `goreleaser/goreleaser-action` 6 → 7 (Node.js 24 compatibility).
+
 ## [0.0.2] - 2026-05-09
 
 ### Changed
